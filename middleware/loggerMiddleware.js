@@ -1,10 +1,12 @@
 const config = require('./config');
+const fs = require('fs');
 
 const configParser = (req, config) => {
     let message = '';
     if (config.date) message += (new Date(req.headers.date)).toString() !== "Invalid Date" 
     ? ` ${new Date(req.headers.date).toLocaleString()}`
     : ` ${new Date().toLocaleString()}`;
+    if(config.requestIp) message += ` ${req.ip}`;
     if (config.method) message += ` ${req.method}`;
     if (config.URL) message += ` ${decodeURI(req.url)}`;
     if (config.statusCode) message += ` ${req.statusCode}`;
@@ -16,9 +18,18 @@ const configParser = (req, config) => {
     return message;
 };
 
-const logger = (req, res, next) => {
+const fileLogger = (config, message) => {
+    if(!config.fileLogs) return;
+    fs.appendFile(config.filePath, message + '\n', (err) =>
+    {
+        if (err) console.log(err);
+    });
+}
 
-    console.log(configParser(req, config, ""));
+const logger = (req, res, next) => {
+    const message = configParser(req, config, "");
+    console.log(message);
+    fileLogger(config, message);
     next();
 };
 

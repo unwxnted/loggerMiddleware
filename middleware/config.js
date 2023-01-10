@@ -6,5 +6,8 @@ module.exports =  config = {
     statusCode : true,
     statusMessage : true,
     headers : false,
-    body : true
+    body : true,
+    requestIp: true,
+    fileLogs: true,
+    filePath: "./logs.log"
 };
