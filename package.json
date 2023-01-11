@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npx jest"
   },
   "keywords": [],
   "author": "unwxnted",
@@ -12,5 +12,8 @@
   "dependencies": {
     "body-parser": "^1.20.1",
     "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "jest": "^29.3.1"
   }
 }
