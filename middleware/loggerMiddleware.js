@@ -10,7 +10,7 @@ const configParser = (req, config) => {
     if (config.statusCode) message += ` ${req.statusCode}`;
     if (config.statusMessage) message += ` ${req.statusMessage}`;
     if (config.headers) message += ` \n${JSON.stringify(req.headers)}`;
-    if (config.body) message += ` ${JSON.stringify(req.body)}`;
+    if (config.body) message += ` \n${JSON.stringify(req.body)}`;
     if (config.client) message += ` \n${req.headers['user-agent']}`;
 
     return message;
@@ -26,7 +26,7 @@ const fileLogger = async (config, message) => {
 const logger = (req, res, next) => {
     const message = configParser(req, config, "");
     if (config.consoleLog) console.log(message);
-    const fileLog = fileLogger(config, message);
+    fileLogger(config, message);
     return next();
 };
 

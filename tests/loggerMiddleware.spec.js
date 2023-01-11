@@ -27,7 +27,7 @@ describe('logger functionalities', () => {
         };
 
         const message = configParser(req, config);
-        expect(message).toBe(`${(new Date()).toLocaleString()} 127.0.0.1 GET /test 200 OK \n{"content-type":"application/json","date":"${(new Date()).toLocaleString()}","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.96 Safari/537.36"} {"key":"value"} \nMozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.96 Safari/537.36`)
+        expect(message).toBe(`${(new Date()).toLocaleString()} 127.0.0.1 GET /test 200 OK \n{"content-type":"application/json","date":"${(new Date()).toLocaleString()}","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.96 Safari/537.36"} \n{"key":"value"} \nMozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.96 Safari/537.36`)
     });
 
     it('should write in the file the correct message', async () => {
